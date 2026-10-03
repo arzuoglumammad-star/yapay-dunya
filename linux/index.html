@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1,
+maximum-scale=1,
+viewport-fit=cover">
+
+<title>Yapay Dünya — Linux Center</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+html,
+body{
+
+margin:0;
+
+padding:0;
+
+background:#05080d;
+
+color:#e9eef5;
+
+font-family:
+system-ui,
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+sans-serif;
+
+}
+
+body{
+
+padding:
+env(safe-area-inset-top)
+16px
+env(safe-area-inset-bottom);
+
+}
+
+.app{
+
+width:100%;
+
+max-width:760px;
+
+margin:auto;
+
+}
+
+.header{
+
+height:64px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+}
+
+.logo{
+
+font-size:20px;
+
+font-weight:800;
+
+}
+
+.status{
+
+font-size:11px;
+
+font-weight:800;
+
+padding:7px 10px;
+
+border-radius:999px;
+
+background:#10251a;
+
+color:#67e8a5;
+
+}
+
+.card{
+
+background:#0d131b;
+
+border:
+1px solid #202a36;
+
+border-radius:18px;
+
+padding:16px;
+
+margin-bottom:14px;
+
+}
+
+.title{
+
+font-size:12px;
+
+font-weight:800;
+
+letter-spacing:.08em;
+
+text-transform:uppercase;
+
+color:#8491a0;
+
+margin-bottom:12px;
+
+}
+
+.stats{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:10px;
+
+}
+
+.stat{
+
+background:#080c12;
+
+border-radius:12px;
+
+padding:12px;
+
+min-height:70px;
+
+}
+
+.stat span{
+
+display:block;
+
+font-size:11px;
+
+color:#788493;
+
+}
+
+.stat b{
+
+display:block;
+
+margin-top:5px;
+
+font-size:15px;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+
+white-space:nowrap;
+
+}
+
+.terminal{
+
+background:#020406;
+
+border:
+1px solid #1d2731;
+
+border-radius:14px;
+
+overflow:hidden;
+
+}
+
+.termbar{
+
+padding:10px 12px;
+
+border-bottom:
+1px solid #1d2731;
+
+font:
+
+11px
+ui-monospace,
+SFMono-Regular,
+Menlo,
+monospace;
+
+color:#7f8b99;
+
+}
+
+.output{
+
+height:330px;
+
+overflow:auto;
+
+padding:13px;
+
+white-space:pre-wrap;
+
+word-break:break-word;
+
+font:
+
+13px/1.55
+ui-monospace,
+SFMono-Regular,
+Menlo,
+monospace;
+
+color:#d7dee8;
+
+}
+
+.command{
+
+display:flex;
+
+align-items:center;
+
+border-top:
+1px solid #1d2731;
+
+}
+
+.prompt{
+
+padding-left:12px;
+
+color:#67e8a5;
+
+font-family:monospace;
+
+}
+
+input{
+
+flex:1;
+
+min-width:0;
+
+padding:13px 10px;
+
+border:0;
+
+outline:0;
+
+background:transparent;
+
+color:#fff;
+
+font:
+
+14px
+ui-monospace,
+SFMono-Regular,
+Menlo,
+monospace;
+
+}
+
+button{
+
+width:100%;
+
+margin-top:10px;
+
+padding:13px;
+
+border:0;
+
+border-radius:12px;
+
+background:#18222e;
+
+color:#fff;
+
+font-weight:800;
+
+}
+
+button:active{
+
+transform:scale(.98);
+
+}
+
+.quick{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:8px;
+
+margin-top:10px;
+
+}
+
+.quick button{
+
+margin:0;
+
+font-size:12px;
+
+}
+
+.footer{
+
+text-align:center;
+
+font-size:10px;
+
+color:#5e6977;
+
+padding:8px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+
+<div class="logo">
+YAPAY DÜNYA
+</div>
+
+<div
+id="status"
+class="status">
+
+LINUX ONLINE
+
+</div>
+
+</header>
+
+
+<section class="card">
+
+<div class="title">
+Linux System
+</div>
+
+<div class="stats">
+
+<div class="stat">
+
+<span>HOST</span>
+
+<b id="host">—</b>
+
+</div>
+
+<div class="stat">
+
+<span>USER</span>
+
+<b id="user">—</b>
+
+</div>
+
+<div class="stat">
+
+<span>PYTHON</span>
+
+<b id="python">—</b>
+
+</div>
+
+<div class="stat">
+
+<span>SYSTEM</span>
+
+<b id="system">—</b>
+
+</div>
+
+<div class="stat">
+
+<span>MACHINE</span>
+
+<b id="machine">—</b>
+
+</div>
+
+<div class="stat">
+
+<span>DISK FREE</span>
+
+<b id="disk">—</b>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="card">
+
+<div class="title">
+Real Linux Terminal
+</div>
+
+<div class="terminal">
+
+<div class="termbar">
+
+YAPAY-DUNYA / LINUX CENTER v1
+
+</div>
+
+<div
+id="output"
+class="output">
+
+Yapay Dünya Linux Center başlatıldı.
+
+Gerçek Termux ortamına bağlı.
+
+Proje:
+~/yapay-dunya
+
+Hazır.
+
+</div>
+
+<div class="command">
+
+<div class="prompt">
+$
+</div>
+
+<input
+id="command"
+placeholder="komut yaz..."
+autocomplete="off"
+autocapitalize="off"
+spellcheck="false">
+
+</div>
+
+</div>
+
+
+<button onclick="runCommand()">
+ÇALIŞTIR
+</button>
+
+
+<div class="quick">
+
+<button onclick="quick('pwd')">
+PWD
+</button>
+
+<button onclick="quick('ls')">
+LS
+</button>
+
+<button onclick="quick('git status')">
+GIT STATUS
+</button>
+
+<button onclick="quick('python3 --version')">
+PYTHON
+</button>
+
+</div>
+
+</section>
+
+
+<div class="footer">
+
+YAPAY DÜNYA LINUX CENTER v1.0.0
+
+</div>
+
+</div>
+
+
+<script>
+
+const API =
+"http://127.0.0.1:8787";
+
+const input =
+document.getElementById("command");
+
+const output =
+document.getElementById("output");
+
+
+function print(text){
+
+output.textContent +=
+"\n\n" + text;
+
+output.scrollTop =
+output.scrollHeight;
+
+}
+
+
+async function runCommand(){
+
+const command =
+input.value.trim();
+
+if(!command)
+return;
+
+print("$ " + command);
+
+input.value = "";
+
+try{
+
+const response =
+await fetch(
+API + "/api/terminal",
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:
+JSON.stringify({
+command:command
+})
+
+}
+);
+
+const data =
+await response.json();
+
+if(data.stdout)
+print(data.stdout);
+
+if(data.stderr)
+print(data.stderr);
+
+if(data.error)
+print(
+"ERROR: " +
+data.error
+);
+
+}
+catch(error){
+
+print(
+"Linux bağlantısı kurulamadı."
+);
+
+print(
+error.message
+);
+
+}
+
+}
+
+
+function quick(command){
+
+input.value =
+command;
+
+runCommand();
+
+}
+
+
+async function loadSystem(){
+
+try{
+
+const response =
+await fetch(
+API + "/api/system"
+);
+
+const data =
+await response.json();
+
+document.getElementById(
+"host"
+).textContent =
+data.hostname || "—";
+
+document.getElementById(
+"user"
+).textContent =
+data.user || "—";
+
+document.getElementById(
+"python"
+).textContent =
+data.python || "—";
+
+document.getElementById(
+"system"
+).textContent =
+data.system || "—";
+
+document.getElementById(
+"machine"
+).textContent =
+data.machine || "—";
+
+const free =
+(
+data.disk_free /
+1024 /
+1024 /
+1024
+).toFixed(1);
+
+document.getElementById(
+"disk"
+).textContent =
+free + " GB";
+
+}
+catch(error){
+
+document.getElementById(
+"status"
+).textContent =
+"LINUX OFFLINE";
+
+}
+
+}
+
+
+input.addEventListener(
+"keydown",
+function(event){
+
+if(event.key === "Enter")
+runCommand();
+
+}
+);
+
+
+loadSystem();
+
+</script>
+
+</body>
+
+</html>
