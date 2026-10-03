@@ -1,0 +1,24 @@
+{
+  "world": {
+    "id": "YD-001",
+    "name": "Yapay Dünya",
+    "status": "online",
+    "version": "0.3.0",
+    "time": 0,
+    "day": 1,
+    "population": 0,
+    "cities": 0,
+    "buildings": 0,
+    "businesses": 0,
+    "orders": 0,
+    "money": 0,
+    "resources": 0,
+    "energy": 0
+  },
+  "cities": [],
+  "agents": [],
+  "businesses": [],
+  "orders": [],
+  "resources": [],
+  "events": []
+}

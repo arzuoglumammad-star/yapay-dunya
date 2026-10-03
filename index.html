@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<meta name="theme-color"
+content="#07111f">
+
+<link rel="manifest"
+href="manifest.json">
+
+<title>Yapay Dünya</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#07111f;
+  color:white;
+  font-family:
+    Arial,
+    sans-serif;
+}
+
+.app{
+  max-width:700px;
+  margin:auto;
+  padding:18px 16px 40px;
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 0 20px;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:800;
+}
+
+.status{
+  font-size:11px;
+  color:#7dffb0;
+}
+
+.hero{
+  padding:24px;
+  border-radius:24px;
+  background:
+    linear-gradient(
+      145deg,
+      #102b45,
+      #091521
+    );
+  border:1px solid #1d344d;
+}
+
+.hero small{
+  color:#7892ac;
+}
+
+.hero h1{
+  font-size:32px;
+  margin:8px 0;
+}
+
+.hero p{
+  color:#9fb2c5;
+  line-height:1.5;
+}
+
+main{
+  margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+
+<div class="logo">
+YAPAY DÜNYA
+</div>
+
+<div class="status">
+● ONLINE
+</div>
+
+</header>
+
+<section class="hero">
+
+<small>
+AUTONOMOUS WORLD SIMULATION
+</small>
+
+<h1>
+Yapay Dünya
+</h1>
+
+<p>
+Kendi zamanı, vatandaşları,
+işletmeleri, kaynakları,
+üretimi ve ekonomisi olan
+simülasyon dünyası.
+</p>
+
+</section>
+
+<main></main>
+
+</div>
+
+<script src="engine/world-engine.js"></script>
+<script src="engine/control.js"></script>
+
+</body>
+
+</html>
