@@ -3,7 +3,7 @@
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "forwardPorts": [
     8787,
-    8790
+    8791
   ],
   "portsAttributes": {
     "8787": {
@@ -11,8 +11,8 @@
       "protocol": "http",
       "onAutoForward": "notify"
     },
-    "8790": {
-      "label": "Yapay Dünya World Engine",
+    "8791": {
+      "label": "Yapay Dünya App Terminal",
       "protocol": "http",
       "onAutoForward": "notify"
     }
