@@ -1,0 +1,1584 @@
+{
+  "version": "1.0.0",
+  "status": "running",
+  "createdAt": "2026-10-03T07:50:19.128Z",
+  "updatedAt": "2026-10-03T07:50:20.452Z",
+  "clock": {
+    "day": 1,
+    "minute": 10,
+    "totalMinutes": 10
+  },
+  "economy": {
+    "moneySupply": 100000,
+    "prices": {
+      "food": 10,
+      "water": 4,
+      "energy": 3,
+      "raw_material": 6
+    },
+    "inflation": 0,
+    "transactions": 1000,
+    "totalSales": 99.9999999999986,
+    "totalWages": 0
+  },
+  "resources": {
+    "food": 1029.3055555555657,
+    "water": 1998.6111111111313,
+    "energy": 1487.6527777777824,
+    "raw_material": 993.9999999999998
+  },
+  "cities": [
+    {
+      "id": "city-001",
+      "name": "Merkez Şehir",
+      "population": 100,
+      "prosperity": 50,
+      "businesses": [
+        "business-001",
+        "business-002"
+      ]
+    }
+  ],
+  "agents": [
+    {
+      "id": "agent-0001",
+      "name": "Vatandaş 1",
+      "cityId": "city-001",
+      "age": 19,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 116.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0002",
+      "name": "Vatandaş 2",
+      "cityId": "city-001",
+      "age": 20,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 133.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0003",
+      "name": "Vatandaş 3",
+      "cityId": "city-001",
+      "age": 21,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 150.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0004",
+      "name": "Vatandaş 4",
+      "cityId": "city-001",
+      "age": 22,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 167.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0005",
+      "name": "Vatandaş 5",
+      "cityId": "city-001",
+      "age": 23,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 184.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0006",
+      "name": "Vatandaş 6",
+      "cityId": "city-001",
+      "age": 24,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 201.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0007",
+      "name": "Vatandaş 7",
+      "cityId": "city-001",
+      "age": 25,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 218.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0008",
+      "name": "Vatandaş 8",
+      "cityId": "city-001",
+      "age": 26,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 235.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0009",
+      "name": "Vatandaş 9",
+      "cityId": "city-001",
+      "age": 27,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 252.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0010",
+      "name": "Vatandaş 10",
+      "cityId": "city-001",
+      "age": 28,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 268.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0011",
+      "name": "Vatandaş 11",
+      "cityId": "city-001",
+      "age": 29,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 285.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0012",
+      "name": "Vatandaş 12",
+      "cityId": "city-001",
+      "age": 30,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 302.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0013",
+      "name": "Vatandaş 13",
+      "cityId": "city-001",
+      "age": 31,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 319.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0014",
+      "name": "Vatandaş 14",
+      "cityId": "city-001",
+      "age": 32,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 336.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0015",
+      "name": "Vatandaş 15",
+      "cityId": "city-001",
+      "age": 33,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 353.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0016",
+      "name": "Vatandaş 16",
+      "cityId": "city-001",
+      "age": 34,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 370.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0017",
+      "name": "Vatandaş 17",
+      "cityId": "city-001",
+      "age": 35,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 387.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0018",
+      "name": "Vatandaş 18",
+      "cityId": "city-001",
+      "age": 36,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 105.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0019",
+      "name": "Vatandaş 19",
+      "cityId": "city-001",
+      "age": 37,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 122.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0020",
+      "name": "Vatandaş 20",
+      "cityId": "city-001",
+      "age": 38,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 139.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0021",
+      "name": "Vatandaş 21",
+      "cityId": "city-001",
+      "age": 39,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 156.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0022",
+      "name": "Vatandaş 22",
+      "cityId": "city-001",
+      "age": 40,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 173.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0023",
+      "name": "Vatandaş 23",
+      "cityId": "city-001",
+      "age": 41,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 190.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0024",
+      "name": "Vatandaş 24",
+      "cityId": "city-001",
+      "age": 42,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 207.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0025",
+      "name": "Vatandaş 25",
+      "cityId": "city-001",
+      "age": 43,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 224.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0026",
+      "name": "Vatandaş 26",
+      "cityId": "city-001",
+      "age": 44,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 241.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0027",
+      "name": "Vatandaş 27",
+      "cityId": "city-001",
+      "age": 45,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 257.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0028",
+      "name": "Vatandaş 28",
+      "cityId": "city-001",
+      "age": 46,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 274.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0029",
+      "name": "Vatandaş 29",
+      "cityId": "city-001",
+      "age": 47,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 291.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0030",
+      "name": "Vatandaş 30",
+      "cityId": "city-001",
+      "age": 48,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 308.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0031",
+      "name": "Vatandaş 31",
+      "cityId": "city-001",
+      "age": 49,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 325.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0032",
+      "name": "Vatandaş 32",
+      "cityId": "city-001",
+      "age": 50,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 342.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0033",
+      "name": "Vatandaş 33",
+      "cityId": "city-001",
+      "age": 51,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 359.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0034",
+      "name": "Vatandaş 34",
+      "cityId": "city-001",
+      "age": 52,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 376.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0035",
+      "name": "Vatandaş 35",
+      "cityId": "city-001",
+      "age": 53,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 393.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0036",
+      "name": "Vatandaş 36",
+      "cityId": "city-001",
+      "age": 54,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 111.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0037",
+      "name": "Vatandaş 37",
+      "cityId": "city-001",
+      "age": 55,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 128.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0038",
+      "name": "Vatandaş 38",
+      "cityId": "city-001",
+      "age": 56,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 145.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0039",
+      "name": "Vatandaş 39",
+      "cityId": "city-001",
+      "age": 57,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 162.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0040",
+      "name": "Vatandaş 40",
+      "cityId": "city-001",
+      "age": 58,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 179.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0041",
+      "name": "Vatandaş 41",
+      "cityId": "city-001",
+      "age": 59,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 196.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0042",
+      "name": "Vatandaş 42",
+      "cityId": "city-001",
+      "age": 60,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 213.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0043",
+      "name": "Vatandaş 43",
+      "cityId": "city-001",
+      "age": 61,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 230.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0044",
+      "name": "Vatandaş 44",
+      "cityId": "city-001",
+      "age": 62,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 247.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0045",
+      "name": "Vatandaş 45",
+      "cityId": "city-001",
+      "age": 63,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 263.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0046",
+      "name": "Vatandaş 46",
+      "cityId": "city-001",
+      "age": 64,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 280.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0047",
+      "name": "Vatandaş 47",
+      "cityId": "city-001",
+      "age": 65,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 297.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0048",
+      "name": "Vatandaş 48",
+      "cityId": "city-001",
+      "age": 66,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 314.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0049",
+      "name": "Vatandaş 49",
+      "cityId": "city-001",
+      "age": 67,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 331.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0050",
+      "name": "Vatandaş 50",
+      "cityId": "city-001",
+      "age": 18,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 348.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0051",
+      "name": "Vatandaş 51",
+      "cityId": "city-001",
+      "age": 19,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 365.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0052",
+      "name": "Vatandaş 52",
+      "cityId": "city-001",
+      "age": 20,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 382.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0053",
+      "name": "Vatandaş 53",
+      "cityId": "city-001",
+      "age": 21,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 100.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0054",
+      "name": "Vatandaş 54",
+      "cityId": "city-001",
+      "age": 22,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 117.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0055",
+      "name": "Vatandaş 55",
+      "cityId": "city-001",
+      "age": 23,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 134.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0056",
+      "name": "Vatandaş 56",
+      "cityId": "city-001",
+      "age": 24,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 151.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0057",
+      "name": "Vatandaş 57",
+      "cityId": "city-001",
+      "age": 25,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 168.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0058",
+      "name": "Vatandaş 58",
+      "cityId": "city-001",
+      "age": 26,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 185.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0059",
+      "name": "Vatandaş 59",
+      "cityId": "city-001",
+      "age": 27,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 202.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0060",
+      "name": "Vatandaş 60",
+      "cityId": "city-001",
+      "age": 28,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 219.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0061",
+      "name": "Vatandaş 61",
+      "cityId": "city-001",
+      "age": 29,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 236.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0062",
+      "name": "Vatandaş 62",
+      "cityId": "city-001",
+      "age": 30,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 253.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0063",
+      "name": "Vatandaş 63",
+      "cityId": "city-001",
+      "age": 31,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 269.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0064",
+      "name": "Vatandaş 64",
+      "cityId": "city-001",
+      "age": 32,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 286.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0065",
+      "name": "Vatandaş 65",
+      "cityId": "city-001",
+      "age": 33,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 303.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0066",
+      "name": "Vatandaş 66",
+      "cityId": "city-001",
+      "age": 34,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 320.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0067",
+      "name": "Vatandaş 67",
+      "cityId": "city-001",
+      "age": 35,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 337.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0068",
+      "name": "Vatandaş 68",
+      "cityId": "city-001",
+      "age": 36,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 354.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0069",
+      "name": "Vatandaş 69",
+      "cityId": "city-001",
+      "age": 37,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 371.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0070",
+      "name": "Vatandaş 70",
+      "cityId": "city-001",
+      "age": 38,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 388.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0071",
+      "name": "Vatandaş 71",
+      "cityId": "city-001",
+      "age": 39,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 106.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0072",
+      "name": "Vatandaş 72",
+      "cityId": "city-001",
+      "age": 40,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 123.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0073",
+      "name": "Vatandaş 73",
+      "cityId": "city-001",
+      "age": 41,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 140.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0074",
+      "name": "Vatandaş 74",
+      "cityId": "city-001",
+      "age": 42,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 157.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0075",
+      "name": "Vatandaş 75",
+      "cityId": "city-001",
+      "age": 43,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 174.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0076",
+      "name": "Vatandaş 76",
+      "cityId": "city-001",
+      "age": 44,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 191.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0077",
+      "name": "Vatandaş 77",
+      "cityId": "city-001",
+      "age": 45,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 208.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0078",
+      "name": "Vatandaş 78",
+      "cityId": "city-001",
+      "age": 46,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 225.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0079",
+      "name": "Vatandaş 79",
+      "cityId": "city-001",
+      "age": 47,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 242.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0080",
+      "name": "Vatandaş 80",
+      "cityId": "city-001",
+      "age": 48,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 258.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0081",
+      "name": "Vatandaş 81",
+      "cityId": "city-001",
+      "age": 49,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 275.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0082",
+      "name": "Vatandaş 82",
+      "cityId": "city-001",
+      "age": 50,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 292.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0083",
+      "name": "Vatandaş 83",
+      "cityId": "city-001",
+      "age": 51,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 309.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0084",
+      "name": "Vatandaş 84",
+      "cityId": "city-001",
+      "age": 52,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 326.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0085",
+      "name": "Vatandaş 85",
+      "cityId": "city-001",
+      "age": 53,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 343.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0086",
+      "name": "Vatandaş 86",
+      "cityId": "city-001",
+      "age": 54,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 360.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0087",
+      "name": "Vatandaş 87",
+      "cityId": "city-001",
+      "age": 55,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 377.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0088",
+      "name": "Vatandaş 88",
+      "cityId": "city-001",
+      "age": 56,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 394.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0089",
+      "name": "Vatandaş 89",
+      "cityId": "city-001",
+      "age": 57,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 112.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0090",
+      "name": "Vatandaş 90",
+      "cityId": "city-001",
+      "age": 58,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 129.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0091",
+      "name": "Vatandaş 91",
+      "cityId": "city-001",
+      "age": 59,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 146.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0092",
+      "name": "Vatandaş 92",
+      "cityId": "city-001",
+      "age": 60,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 163.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0093",
+      "name": "Vatandaş 93",
+      "cityId": "city-001",
+      "age": 61,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 180.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0094",
+      "name": "Vatandaş 94",
+      "cityId": "city-001",
+      "age": 62,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 197.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0095",
+      "name": "Vatandaş 95",
+      "cityId": "city-001",
+      "age": 63,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 214.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0096",
+      "name": "Vatandaş 96",
+      "cityId": "city-001",
+      "age": 64,
+      "job": "market",
+      "employerId": "business-001",
+      "balance": 231.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0097",
+      "name": "Vatandaş 97",
+      "cityId": "city-001",
+      "age": 65,
+      "job": "taşıma",
+      "employerId": "business-001",
+      "balance": 248.00000000000006,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0098",
+      "name": "Vatandaş 98",
+      "cityId": "city-001",
+      "age": 66,
+      "job": "hizmet",
+      "employerId": "business-001",
+      "balance": 264.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0099",
+      "name": "Vatandaş 99",
+      "cityId": "city-001",
+      "age": 67,
+      "job": "enerji",
+      "employerId": "business-001",
+      "balance": 281.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    },
+    {
+      "id": "agent-0100",
+      "name": "Vatandaş 100",
+      "cityId": "city-001",
+      "age": 18,
+      "job": "üretim",
+      "employerId": "business-002",
+      "balance": 298.9999999999998,
+      "dailyNeed": {
+        "food": 1,
+        "water": 2,
+        "energy": 0.5
+      },
+      "satisfaction": 70.09999999999991
+    }
+  ],
+  "businesses": [
+    {
+      "id": "business-001",
+      "name": "Gıda Üretim Tesisi",
+      "type": "producer",
+      "cityId": "city-001",
+      "employees": 80,
+      "cash": 15000,
+      "stock": {
+        "food": 530
+      },
+      "productionPerMinute": 3,
+      "wagePerDay": 120
+    },
+    {
+      "id": "business-002",
+      "name": "Merkez Market",
+      "type": "retail",
+      "cityId": "city-001",
+      "employees": 20,
+      "cash": 10100.000000000364,
+      "stock": {
+        "food": 290.0000000000091,
+        "water": 500
+      },
+      "wagePerDay": 100
+    }
+  ],
+  "orders": [],
+  "events": [],
+  "metrics": {
+    "births": 0,
+    "deaths": 0,
+    "employed": 100,
+    "unemployed": 0,
+    "production": 30,
+    "consumption": 2.430555555555552,
+    "sales": 99.99999999999982,
+    "orders": 0
+  }
+}
