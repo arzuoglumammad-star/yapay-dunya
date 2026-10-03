@@ -1,4 +1,10 @@
-server.log
-linux/server.log
+
+# Local logs
+# Python cache
+# Temporary backups
+*.backup-linux-v1
 *.log
+*.pyc
 __pycache__/
+linux/server.log
+server.log
