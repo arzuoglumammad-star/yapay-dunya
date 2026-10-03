@@ -1,0 +1,13 @@
+{
+  "name": "Yapay Dünya Integrated Linux Terminal",
+  "service": "remote-linux-terminal",
+  "port": 8792,
+  "workspace": "/workspaces/yapay-dunya",
+  "api": {
+    "status": "/api/status",
+    "system": "/api/system",
+    "terminal": "/api/terminal"
+  },
+  "engine": "simulation-engine",
+  "world_api_port": 8790
+}

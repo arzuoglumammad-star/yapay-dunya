@@ -154,6 +154,9 @@ box-shadow:0 10px 30px rgba(0,0,0,.35);
 </div>
 <script src="engine/remote-linux.js"></script>
 
+
+
+
 <!-- YAPAY_DUNYA_LINUX_TERMINAL -->
 <section id="yapay-dunya-linux-terminal"
 style="
@@ -161,7 +164,7 @@ margin:16px;
 padding:16px;
 border:1px solid #202833;
 border-radius:16px;
-background:#0d131a;
+background:#0b1016;
 color:#fff;
 ">
 
@@ -175,29 +178,102 @@ font-weight:800;
 <div style="
 margin-top:5px;
 font-size:11px;
-color:#788595;
+color:#7c8795;
 ">
-Yapay Dünya uygulamasının içinden Linux kullan.
+Yapay Dünya'nın Linux çalışma ortamı
 </div>
 
-<a
-href="/terminal"
+<button
+id="openLinuxTerminal"
 style="
-display:block;
+width:100%;
 margin-top:12px;
-padding:13px;
+padding:14px;
+border:0;
 border-radius:11px;
 background:#17212d;
 color:#fff;
-text-align:center;
-text-decoration:none;
-font-weight:800;
 font-size:13px;
+font-weight:800;
 ">
 TERMINALİ AÇ
-</a>
+</button>
+
+<div id="linuxTerminalStatus"
+style="
+margin-top:8px;
+font-size:10px;
+color:#42e879;
+text-align:center;
+">
+● LINUX TERMINAL HAZIR
+</div>
 
 </section>
+
+<script>
+(function(){
+
+const button=document.getElementById("openLinuxTerminal");
+const status=document.getElementById("linuxTerminalStatus");
+
+if(!button) return;
+
+button.addEventListener("click",function(){
+
+    /*
+     * Codespaces ortamında 8792 portunu
+     * aynı Codespace'in port adresine dönüştür.
+     */
+    const host=location.hostname;
+
+    let target="";
+
+    if(host.includes(".github.dev")){
+
+        const parts=host.split(".");
+
+        if(parts.length >= 3){
+
+            const base=parts[0];
+
+            target=
+                "https://"+
+                base+
+                "-8792.app.github.dev/";
+
+        }
+
+    }
+
+    /*
+     * Otomatik Codespaces adresi üretilemezse
+     * mevcut origin üzerinden terminal yolunu dene.
+     */
+    if(!target){
+
+        target="/terminal";
+
+    }
+
+    status.textContent="● TERMINAL AÇILIYOR";
+
+    window.open(
+        target,
+        "_blank"
+    );
+
+    setTimeout(function(){
+
+        status.textContent=
+            "● LINUX TERMINAL ONLINE";
+
+    },1000);
+
+});
+
+})();
+</script>
 
 </body>
 
