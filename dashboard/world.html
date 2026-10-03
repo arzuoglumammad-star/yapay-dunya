@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080b12">
+<title>Yapay Dünya — Kontrol Merkezi</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#080b12;
+ color:#eef2f7;
+ font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+header{
+ position:sticky;
+ top:0;
+ z-index:5;
+ padding:18px;
+ background:#0d111a;
+ border-bottom:1px solid #202735;
+}
+h1{margin:0;font-size:23px}
+small{color:#8994a5}
+.container{padding:16px;max-width:900px;margin:auto}
+.status{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:14px;
+}
+.online{color:#45e58b;font-weight:700}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+}
+.card{
+ background:#101620;
+ border:1px solid #202a39;
+ border-radius:16px;
+ padding:15px;
+}
+.label{font-size:12px;color:#8994a5}
+.value{font-size:24px;font-weight:750;margin-top:4px}
+.controls{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px;
+ margin:14px 0;
+}
+button{
+ border:1px solid #303b4d;
+ background:#151d29;
+ color:white;
+ border-radius:12px;
+ padding:13px 8px;
+ font-weight:700;
+}
+button:active{transform:scale(.98)}
+.section{
+ margin-top:18px;
+ margin-bottom:8px;
+ font-weight:750;
+}
+.event{
+ padding:10px 0;
+ border-bottom:1px solid #202735;
+ font-size:13px;
+}
+pre{
+ white-space:pre-wrap;
+ word-break:break-word;
+ background:#070a0f;
+ border:1px solid #202735;
+ border-radius:12px;
+ padding:12px;
+ font-size:11px;
+ color:#b9c5d5;
+}
+@media(min-width:700px){
+ .grid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <h1>Yapay Dünya</h1>
+ <small>Gerçek zamanlı yapay şehir simülasyonu</small>
+</header>
+
+<div class="container">
+
+<div class="status">
+ <span>WORLD ENGINE</span>
+ <span id="status" class="online">ONLINE</span>
+</div>
+
+<div class="grid">
+ <div class="card">
+  <div class="label">DÜNYA GÜNÜ</div>
+  <div class="value" id="day">-</div>
+ </div>
+ <div class="card">
+  <div class="label">SAAT</div>
+  <div class="value" id="time">-</div>
+ </div>
+ <div class="card">
+  <div class="label">NÜFUS</div>
+  <div class="value" id="population">-</div>
+ </div>
+ <div class="card">
+  <div class="label">PARA</div>
+  <div class="value" id="money">-</div>
+ </div>
+ <div class="card">
+  <div class="label">GIDA</div>
+  <div class="value" id="food">-</div>
+ </div>
+ <div class="card">
+  <div class="label">SU</div>
+  <div class="value" id="water">-</div>
+ </div>
+ <div class="card">
+  <div class="label">ENERJİ</div>
+  <div class="value" id="energy">-</div>
+ </div>
+ <div class="card">
+  <div class="label">GIDA FİYATI</div>
+  <div class="value" id="price">-</div>
+ </div>
+</div>
+
+<div class="controls">
+ <button onclick="control('start')">BAŞLAT</button>
+ <button onclick="control('stop')">DURDUR</button>
+ <button onclick="control('tick')">+1 DK</button>
+</div>
+
+<div class="section">SİSTEM OLAYLARI</div>
+<div id="events"></div>
+
+<div class="section">HAM DURUM</div>
+<pre id="raw">Yükleniyor...</pre>
+
+</div>
+
+<script>
+const API = location.port === "8791"
+ ? ""
+ : "http://" + location.hostname + ":8791";
+
+async function getState(){
+ try{
+  const r = await fetch(API + "/api/state");
+  return await r.json();
+ }catch(e){
+  document.getElementById("status").textContent="OFFLINE";
+  throw e;
+ }
+}
+
+async function control(action){
+ await fetch(API + "/api/control",{
+  method:"POST",
+  headers:{"Content-Type":"application/json"},
+  body:JSON.stringify({action})
+ });
+ await refresh();
+}
+
+function fmt(n){
+ return Number(n||0).toLocaleString("tr-TR",{
+  maximumFractionDigits:2
+ });
+}
+
+async function refresh(){
+ try{
+  const s=await getState();
+
+  document.getElementById("status").textContent =
+    s.world.running ? "ONLINE / ÇALIŞIYOR" : "ONLINE / DURDU";
+
+  document.getElementById("day").textContent =
+    "Gün " + s.world.day;
+
+  document.getElementById("time").textContent =
+    String(s.world.hour).padStart(2,"0")+":"+
+    String(s.world.minute).padStart(2,"0");
+
+  document.getElementById("population").textContent =
+    fmt(s.population.total);
+
+  document.getElementById("money").textContent =
+    fmt(s.economy.money);
+
+  document.getElementById("food").textContent =
+    fmt(s.resources.food);
+
+  document.getElementById("water").textContent =
+    fmt(s.resources.water);
+
+  document.getElementById("energy").textContent =
+    fmt(s.resources.energy);
+
+  document.getElementById("price").textContent =
+    fmt(s.economy.food_price);
+
+  document.getElementById("events").innerHTML =
+    (s.events||[]).slice(0,10).map(x=>
+      `<div class="event">
+       <b>${x.type}</b> — ${x.message}
+      </div>`
+    ).join("");
+
+  document.getElementById("raw").textContent =
+    JSON.stringify(s,null,2);
+
+ }catch(e){
+  document.getElementById("raw").textContent =
+    "API bağlantısı bekleniyor...";
+ }
+}
+
+refresh();
+setInterval(refresh,1000);
+</script>
+
+</body>
+</html>
