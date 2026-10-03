@@ -1,366 +1,196 @@
 #!/usr/bin/env python3
 
-import os
-import json
-import shutil
-import subprocess
-import platform
-import socket
+from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
-from http.server import BaseHTTPRequestHandler, HTTPServer
+import subprocess
+import json
+import os
+import platform
+import shutil
+import time
 
-HOST = "127.0.0.1"
+HOST = "0.0.0.0"
 PORT = 8787
+PROJECT = Path("/workspaces/yapay-dunya")
 
-PROJECT = Path.home() / "yapay-dunya"
-LINUX_DIR = PROJECT / "linux"
-INDEX = LINUX_DIR / "index.html"
-
-
-def json_response(handler, data, code=200):
-
-    body = json.dumps(
-        data,
-        ensure_ascii=False
-    ).encode("utf-8")
-
-    handler.send_response(code)
-    handler.send_header(
-        "Content-Type",
-        "application/json; charset=utf-8"
-    )
-    handler.send_header(
-        "Access-Control-Allow-Origin",
-        "*"
-    )
-    handler.send_header(
-        "Content-Length",
-        str(len(body))
-    )
-    handler.end_headers()
-
-    handler.wfile.write(body)
-
-
-def html_response(handler):
-
-    try:
-
-        body = INDEX.read_bytes()
-
-        handler.send_response(200)
-
-        handler.send_header(
-            "Content-Type",
-            "text/html; charset=utf-8"
-        )
-
-        handler.send_header(
-            "Content-Length",
-            str(len(body))
-        )
-
-        handler.end_headers()
-
-        handler.wfile.write(body)
-
-    except Exception as e:
-
-        json_response(
-            handler,
-            {
-                "hata": str(e)
-            },
-            500
-        )
-
+BLOCKED = [
+    "rm -rf /",
+    "rm -rf /*",
+    "mkfs",
+    "shutdown",
+    "poweroff",
+    "reboot",
+    "dd if=/dev/zero",
+    "dd if=/dev/random",
+    ":(){ :|:& };:"
+]
 
 def system_info():
-
-    total, used, free = shutil.disk_usage(PROJECT)
-
+    disk = shutil.disk_usage("/")
     return {
-
-        "service":
-            "YAPAY DUNYA LINUX CENTER",
-
-        "version":
-            "1.0.0",
-
-        "hostname":
-            socket.gethostname(),
-
-        "platform":
-            platform.platform(),
-
-        "system":
-            platform.system(),
-
-        "machine":
-            platform.machine(),
-
-        "python":
-            platform.python_version(),
-
-        "user":
-            os.environ.get(
-                "USER",
-                "unknown"
-            ),
-
-        "project":
-            str(PROJECT),
-
-        "disk_total":
-            total,
-
-        "disk_used":
-            used,
-
-        "disk_free":
-            free
+        "ok": True,
+        "hostname": platform.node(),
+        "system": platform.system(),
+        "release": platform.release(),
+        "machine": platform.machine(),
+        "python": platform.python_version(),
+        "user": os.getenv("USER", "unknown"),
+        "uid": os.getuid(),
+        "project": str(PROJECT),
+        "disk_total": disk.total,
+        "disk_used": disk.used,
+        "disk_free": disk.free,
+        "time": time.time()
     }
 
-
 def run_command(command):
-
     command = command.strip()
 
     if not command:
+        return {"ok": False, "output": "Komut boş."}
 
-        return {
-            "ok": False,
-            "error": "Komut boş."
-        }
+    low = command.lower()
 
-    blocked = [
-
-        "rm -rf /",
-
-        "rm -rf /*",
-
-        "mkfs",
-
-        "shutdown",
-
-        "reboot",
-
-        "poweroff",
-
-        ":(){ :|:& };:",
-
-        "dd if=/dev/zero",
-
-        "dd if=/dev/random"
-
-    ]
-
-    for item in blocked:
-
-        if item in command:
-
+    for item in BLOCKED:
+        if item in low:
             return {
-
                 "ok": False,
-
-                "error":
-                    "Bu komut V1 güvenlik filtresinde engellendi."
-
+                "output": "GÜVENLİK: Tehlikeli komut engellendi."
             }
 
     try:
-
-        process = subprocess.run(
-
+        result = subprocess.run(
             command,
-
             shell=True,
-
-            cwd=str(PROJECT),
-
+            cwd=PROJECT,
             capture_output=True,
-
             text=True,
-
             timeout=30
-
         )
 
         return {
-
-            "ok": True,
-
-            "exit":
-                process.returncode,
-
-            "stdout":
-                process.stdout,
-
-            "stderr":
-                process.stderr
-
+            "ok": result.returncode == 0,
+            "code": result.returncode,
+            "output": (result.stdout + result.stderr)[-20000:]
         }
 
     except subprocess.TimeoutExpired:
-
         return {
-
             "ok": False,
-
-            "error":
-                "Komut 30 saniyelik zaman aşımına uğradı."
-
+            "output": "Komut 30 saniyelik zaman aşımına uğradı."
         }
 
-    except Exception as e:
-
+    except Exception as exc:
         return {
-
             "ok": False,
-
-            "error":
-                str(e)
-
+            "output": str(exc)
         }
-
 
 class Handler(BaseHTTPRequestHandler):
 
+    def send_json(self, data):
+        raw = json.dumps(
+            data,
+            ensure_ascii=False
+        ).encode()
+
+        self.send_response(200)
+        self.send_header(
+            "Content-Type",
+            "application/json; charset=utf-8"
+        )
+        self.send_header(
+            "Access-Control-Allow-Origin",
+            "*"
+        )
+        self.send_header(
+            "Content-Length",
+            str(len(raw))
+        )
+        self.end_headers()
+        self.wfile.write(raw)
+
     def do_GET(self):
 
-        if self.path in ["/", "/index.html"]:
-
-            html_response(self)
-
-            return
-
         if self.path == "/api/status":
-
-            json_response(
-
-                self,
-
-                {
-
-                    "service":
-                        "YAPAY DUNYA LINUX CENTER",
-
-                    "version":
-                        "1.0.0",
-
-                    "status":
-                        "online"
-
-                }
-
-            )
-
+            self.send_json({
+                "ok": True,
+                "service": "Yapay Dünya Remote Linux Center",
+                "version": "2.0.0"
+            })
             return
 
         if self.path == "/api/system":
-
-            json_response(
-                self,
-                system_info()
-            )
-
+            self.send_json(system_info())
             return
 
-        json_response(
+        if self.path == "/api/git":
+            result = run_command(
+                "git status --short --branch"
+            )
+            self.send_json(result)
+            return
 
-            self,
+        if self.path in ["/", "/index.html"]:
 
-            {
+            file = PROJECT / "linux" / "index.html"
 
-                "error":
-                    "Endpoint bulunamadı.",
+            if not file.exists():
+                self.send_error(404)
+                return
 
-                "service":
-                    "YAPAY DUNYA LINUX CENTER"
+            raw = file.read_bytes()
 
-            },
+            self.send_response(200)
+            self.send_header(
+                "Content-Type",
+                "text/html; charset=utf-8"
+            )
+            self.send_header(
+                "Content-Length",
+                str(len(raw))
+            )
+            self.end_headers()
+            self.wfile.write(raw)
+            return
 
-            404
-
-        )
+        self.send_error(404)
 
     def do_POST(self):
 
         if self.path != "/api/terminal":
-
-            json_response(
-
-                self,
-
-                {
-                    "error":
-                        "Endpoint bulunamadı."
-                },
-
-                404
-
-            )
-
+            self.send_error(404)
             return
 
         try:
-
             length = int(
                 self.headers.get(
                     "Content-Length",
-                    0
+                    "0"
                 )
             )
 
-            raw = self.rfile.read(length)
+            body = self.rfile.read(length)
+            data = json.loads(body.decode())
 
-            data = json.loads(
-                raw.decode("utf-8")
+            result = run_command(
+                data.get("command", "")
             )
 
-            command = data.get(
-                "command",
-                ""
-            )
+            self.send_json(result)
 
-            result = run_command(command)
-
-            json_response(
-                self,
-                result
-            )
-
-        except Exception as e:
-
-            json_response(
-
-                self,
-
-                {
-                    "ok": False,
-                    "error": str(e)
-                },
-
-                400
-
-            )
-
-    def log_message(
-        self,
-        format,
-        *args
-    ):
-
-        return
-
+        except Exception as exc:
+            self.send_json({
+                "ok": False,
+                "output": str(exc)
+            })
 
 print("")
 print("==========================================")
-print(" YAPAY DUNYA LINUX CENTER v1")
+print(" YAPAY DUNYA REMOTE LINUX CENTER v2")
 print("==========================================")
-print("PROJECT:", PROJECT)
-print("URL: http://127.0.0.1:" + str(PORT))
-print("==========================================")
+print("Project:", PROJECT)
+print("Port:", PORT)
 print("")
 
 server = HTTPServer(

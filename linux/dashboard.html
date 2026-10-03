@@ -1,0 +1,427 @@
+<!doctype html>
+
+<html lang="tr">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1">
+
+<title>Yapay Dünya Remote Linux</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #070a0f;
+    color: #edf2f7;
+    font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+}
+
+header {
+    padding: 18px;
+    border-bottom:
+        1px solid #27313d;
+}
+
+h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.sub {
+    margin-top: 5px;
+    color: #8995a5;
+    font-size: 12px;
+}
+
+main {
+    max-width: 900px;
+    margin: auto;
+    padding: 16px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, 1fr);
+    gap: 10px;
+}
+
+.card {
+    background: #111720;
+    border:
+        1px solid #27313d;
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.label {
+    color: #8995a5;
+    font-size: 12px;
+}
+
+.value {
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+.online {
+    margin-top: 16px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #111a16;
+    border: 1px solid #294638;
+}
+
+.terminal {
+    margin-top: 16px;
+}
+
+.output {
+    min-height: 300px;
+    max-height: 500px;
+    overflow: auto;
+    background: #020304;
+    border: 1px solid #27313d;
+    border-radius: 12px;
+    padding: 14px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+input {
+    flex: 1;
+    min-width: 0;
+    background: #0c1118;
+    border: 1px solid #303b49;
+    color: white;
+    padding: 13px;
+    border-radius: 10px;
+    outline: none;
+}
+
+button {
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: #1d2937;
+    color: white;
+    font-weight: 700;
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+@media (max-width: 520px) {
+
+    .grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>
+YAPAY DÜNYA / REMOTE LINUX
+</h1>
+
+<div class="sub">
+GitHub Codespaces • Linux Center • World Engine
+</div>
+
+</header>
+
+<main>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="label">
+Bağlantı
+</div>
+
+<div id="connection"
+     class="value">
+Kontrol ediliyor...
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">
+Linux
+</div>
+
+<div id="linux"
+     class="value">
+...
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">
+Python
+</div>
+
+<div id="python"
+     class="value">
+...
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">
+Kullanıcı
+</div>
+
+<div id="user"
+     class="value">
+...
+</div>
+
+</div>
+
+</div>
+
+<div class="online">
+
+Remote Linux Center:
+<strong>ONLINE</strong>
+
+<br>
+
+Port:
+<strong>8787</strong>
+
+</div>
+
+<div class="terminal">
+
+<div id="output"
+     class="output">
+Yapay Dünya Remote Linux hazır.
+</div>
+
+<div class="row">
+
+<input
+    id="command"
+    placeholder="Linux komutu..."
+    autocomplete="off">
+
+<button onclick="runCommand()">
+ÇALIŞTIR
+</button>
+
+</div>
+
+<div class="row">
+
+<button onclick="quick('pwd')">
+PWD
+</button>
+
+<button onclick="quick('ls -la')">
+LS
+</button>
+
+<button onclick="quick('git status')">
+GIT
+</button>
+
+<button onclick="quick('python3 --version')">
+PYTHON
+</button>
+
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+async function loadSystem() {
+
+    try {
+
+        const status =
+            await fetch(
+                "/api/status"
+            );
+
+        const s =
+            await status.json();
+
+        document
+            .getElementById("connection")
+            .textContent =
+            s.ok
+                ? "ONLINE"
+                : "OFFLINE";
+
+        const response =
+            await fetch(
+                "/api/system"
+            );
+
+        const data =
+            await response.json();
+
+        document
+            .getElementById("linux")
+            .textContent =
+            data.release;
+
+        document
+            .getElementById("python")
+            .textContent =
+            data.python;
+
+        document
+            .getElementById("user")
+            .textContent =
+            data.user +
+            " / UID " +
+            data.uid;
+
+    } catch (error) {
+
+        document
+            .getElementById("connection")
+            .textContent =
+            "OFFLINE";
+
+    }
+
+}
+
+async function runCommand() {
+
+    const input =
+        document.getElementById(
+            "command"
+        );
+
+    const command =
+        input.value.trim();
+
+    if (!command)
+        return;
+
+    const output =
+        document.getElementById(
+            "output"
+        );
+
+    output.textContent +=
+        "\n\n$ " +
+        command +
+        "\n";
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/terminal",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        command
+                    })
+                }
+            );
+
+        const result =
+            await response.json();
+
+        output.textContent +=
+            result.output || "";
+
+        output.scrollTop =
+            output.scrollHeight;
+
+    } catch (error) {
+
+        output.textContent +=
+            "\nHATA: " +
+            error;
+
+    }
+
+    input.value = "";
+
+}
+
+function quick(command) {
+
+    document
+        .getElementById("command")
+        .value = command;
+
+    runCommand();
+
+}
+
+document
+    .getElementById("command")
+    .addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                runCommand();
+
+            }
+
+        }
+    );
+
+loadSystem();
+
+</script>
+
+</body>
+
+</html>

@@ -1,14 +1,13 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 
-cd "$HOME/yapay-dunya/linux"
+cd /workspaces/yapay-dunya/linux
 
 echo ""
 echo "=========================================="
-echo " YAPAY DUNYA LINUX CENTER v1"
+echo " YAPAY DUNYA REMOTE LINUX CENTER"
 echo "=========================================="
-echo "URL:"
-echo "http://127.0.0.1:8787"
-echo "=========================================="
+echo ""
+echo "PORT: 8787"
 echo ""
 
 python3 server.py

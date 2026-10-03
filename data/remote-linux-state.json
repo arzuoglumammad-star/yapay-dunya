@@ -1,0 +1,17 @@
+{
+  "name": "Yapay Dünya Remote Linux",
+  "version": "4.0.0",
+  "provider": "GitHub Codespaces",
+  "status": "online",
+  "linux_center": {
+    "port": 8787,
+    "api": true,
+    "terminal": true,
+    "system_monitor": true
+  },
+  "world_engine": {
+    "bridge": true,
+    "connected": false
+  },
+  "mobile_control": true
+}
