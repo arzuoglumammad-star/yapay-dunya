@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#050505">
-<title>Yapay Dünya — Terminal</title>
+<meta name="theme-color" content="#05070a">
+<title>Yapay Dünya — Linux Terminal</title>
 
 <style>
 *{box-sizing:border-box}
@@ -13,42 +13,75 @@ html,body{
  margin:0;
  width:100%;
  height:100%;
- background:#050505;
- color:#e8e8e8;
+ background:#05070a;
+ color:#e8edf5;
  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ overflow:hidden
 }
 
 body{
  display:flex;
- flex-direction:column;
+ flex-direction:column
 }
 
 .header{
- height:58px;
+ height:60px;
  flex:none;
  display:flex;
  align-items:center;
  justify-content:space-between;
  padding:0 14px;
- background:#0b0b0b;
- border-bottom:1px solid #222;
+ background:#0b1016;
+ border-bottom:1px solid #202833
 }
 
 .title{
  font-weight:800;
- font-size:16px;
+ font-size:16px
 }
 
-.subtitle{
- color:#777;
- font-size:10px;
- margin-top:2px;
+.sub{
+ color:#758091;
+ font-size:9px;
+ margin-top:2px
 }
 
-.online{
- color:#35e878;
+.status{
+ color:#38e77f;
  font-size:11px;
- font-weight:700;
+ font-weight:800
+}
+
+.system{
+ flex:none;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:6px;
+ padding:7px;
+ background:#080c11
+}
+
+.card{
+ min-width:0;
+ padding:7px;
+ border:1px solid #1d2630;
+ border-radius:9px;
+ background:#0d131a
+}
+
+.card small{
+ display:block;
+ color:#697585;
+ font-size:8px
+}
+
+.card b{
+ display:block;
+ margin-top:2px;
+ font-size:10px;
+ overflow:hidden;
+ text-overflow:ellipsis;
+ white-space:nowrap
 }
 
 .terminal{
@@ -56,118 +89,105 @@ body{
  min-height:0;
  display:flex;
  flex-direction:column;
+ background:#000
 }
 
 .output{
  flex:1;
  min-height:0;
  overflow:auto;
- padding:14px;
- background:#000;
+ padding:13px;
  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
  font-size:13px;
  line-height:1.55;
  white-space:pre-wrap;
- word-break:break-word;
+ word-break:break-word
 }
 
 .line{
- margin-bottom:5px;
+ margin-bottom:5px
 }
 
 .prompt{
- color:#36e879;
+ color:#39e77f
 }
 
-.cmd{
- color:#fff;
+.command{
+ color:#fff
 }
 
-.err{
- color:#ff6868;
+.error{
+ color:#ff6868
 }
 
 .inputbar{
- display:flex;
  flex:none;
- min-height:52px;
- background:#0b0b0b;
- border-top:1px solid #222;
-}
-
-.promptbox{
+ min-height:54px;
  display:flex;
  align-items:center;
+ border-top:1px solid #222;
+ background:#0a0d11
+}
+
+.dollar{
  padding-left:12px;
- color:#36e879;
+ color:#39e77f;
  font-family:monospace;
+ font-size:15px
 }
 
 input{
  flex:1;
  min-width:0;
+ height:54px;
  border:0;
  outline:0;
  background:transparent;
  color:#fff;
- padding:0 8px;
+ padding:0 9px;
  font-family:monospace;
- font-size:14px;
+ font-size:14px
 }
 
-button{
- border:0;
- background:#151515;
+.run{
+ height:38px;
+ margin-right:7px;
+ padding:0 12px;
+ border:1px solid #29333e;
+ border-radius:9px;
+ background:#131b24;
  color:#fff;
- padding:0 15px;
- font-weight:700;
+ font-weight:800
 }
 
 .quick{
+ flex:none;
  display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:6px;
- padding:8px;
- background:#0b0b0b;
- border-top:1px solid #222;
+ grid-template-columns:repeat(5,1fr);
+ gap:5px;
+ padding:7px;
+ background:#090d12;
+ border-top:1px solid #202833
 }
 
 .quick button{
- min-height:36px;
- border:1px solid #252525;
+ min-height:34px;
+ border:1px solid #222c36;
  border-radius:8px;
- font-size:10px;
+ background:#111821;
+ color:#dbe3ec;
+ font-size:9px;
+ font-weight:700
 }
 
-.info{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:6px;
- padding:7px;
- background:#090909;
- border-top:1px solid #222;
-}
-
-.info div{
- background:#111;
- border:1px solid #222;
- border-radius:7px;
- padding:6px;
-}
-
-.info small{
- display:block;
- color:#666;
- font-size:8px;
-}
-
-.info b{
- display:block;
- margin-top:2px;
- font-size:10px;
- white-space:nowrap;
- overflow:hidden;
- text-overflow:ellipsis;
+.bottom{
+ flex:none;
+ padding:6px 10px;
+ background:#0b1016;
+ border-top:1px solid #202833;
+ color:#657282;
+ font-size:9px;
+ text-align:center
 }
 </style>
 </head>
@@ -177,22 +197,23 @@ button{
 <header class="header">
  <div>
   <div class="title">🐧 Yapay Dünya Terminal</div>
-  <div class="subtitle">Linux • Remote Runtime</div>
+  <div class="sub">Linux Remote Runtime • Integrated Terminal</div>
  </div>
-
- <div id="online" class="online">BAĞLANIYOR</div>
+ <div id="status" class="status">● BAĞLANIYOR</div>
 </header>
 
-<section class="info">
- <div>
+<section class="system">
+ <div class="card">
   <small>SİSTEM</small>
   <b id="system">-</b>
  </div>
- <div>
+
+ <div class="card">
   <small>PYTHON</small>
   <b id="python">-</b>
  </div>
- <div>
+
+ <div class="card">
   <small>KULLANICI</small>
   <b id="user">-</b>
  </div>
@@ -203,57 +224,53 @@ button{
  <div id="output" class="output">
   <div class="line">
    <span class="prompt">yapay-dunya@linux:~$</span>
-   Yapay Dünya Terminal hazır.
+   Yapay Dünya Linux Terminali başlatıldı.
   </div>
 
   <div class="line">
-   Linux komutunu yaz ve ENTER'a bas.
+   Linux komutunu yazıp ENTER'a bas.
   </div>
  </div>
 
  <div class="quick">
-  <button onclick="runQuick('pwd')">PWD</button>
-  <button onclick="runQuick('ls -la')">DOSYALAR</button>
-  <button onclick="runQuick('python3 --version')">PYTHON</button>
-  <button onclick="runQuick('git status')">GIT</button>
+  <button onclick="quick('pwd')">PWD</button>
+  <button onclick="quick('ls -la')">LS</button>
+  <button onclick="quick('python3 --version')">PYTHON</button>
+  <button onclick="quick('git status --short --branch')">GIT</button>
+  <button onclick="quick('uname -a')">SYSTEM</button>
  </div>
 
  <div class="inputbar">
-  <div class="promptbox">$</div>
+  <span class="dollar">$</span>
 
   <input
    id="input"
+   type="text"
    autocomplete="off"
    autocapitalize="off"
    spellcheck="false"
    placeholder="Linux komutu..."
   >
 
-  <button onclick="execute()">ÇALIŞTIR</button>
+  <button class="run" onclick="execute()">ÇALIŞTIR</button>
  </div>
 
 </main>
 
+<div class="bottom">
+ /workspaces/yapay-dunya • Linux Center
+</div>
+
 <script>
 
-const API = "";
+const output=document.getElementById("output");
+const input=document.getElementById("input");
 
-const output =
- document.getElementById("output");
-
-const input =
- document.getElementById("input");
-
-function add(text,className=""){
-
- const line=document.createElement("div");
-
- line.className="line "+className;
-
- line.textContent=text;
-
- output.appendChild(line);
-
+function print(text,cls=""){
+ const el=document.createElement("div");
+ el.className="line "+cls;
+ el.textContent=text;
+ output.appendChild(el);
  output.scrollTop=output.scrollHeight;
 }
 
@@ -265,97 +282,85 @@ async function execute(){
 
  input.value="";
 
- add("$ "+command,"cmd");
+ print("$ "+command,"command");
 
  try{
 
-  const response=await fetch(
-   API+"/api/terminal",
-   {
-    method:"POST",
-    headers:{
-     "Content-Type":"application/json"
-    },
-    body:JSON.stringify({
-     command:command
-    })
-   }
-  );
+  const response=await fetch("/api/terminal",{
+   method:"POST",
+   headers:{
+    "Content-Type":"application/json"
+   },
+   body:JSON.stringify({
+    command:command
+   })
+  });
 
   const data=await response.json();
 
   if(data.output)
-   add(data.output);
+   print(data.output);
 
   if(data.error)
-   add(data.error,"err");
+   print(data.error,"error");
 
  }catch(error){
 
-  add(
-   "TERMINAL BAĞLANTI HATASI: "+
-   error.message,
-   "err"
+  print(
+   "TERMINAL HATASI: "+error.message,
+   "error"
   );
 
  }
 
 }
 
-function runQuick(command){
+function quick(command){
 
  input.value=command;
-
  execute();
 
 }
 
-input.addEventListener(
- "keydown",
- function(event){
+input.addEventListener("keydown",function(e){
 
-  if(event.key==="Enter")
-   execute();
+ if(e.key==="Enter")
+  execute();
 
- }
-);
+});
 
 async function systemInfo(){
 
  try{
 
-  const response=
-   await fetch("/api/system");
+  const response=await fetch("/api/system");
+  const data=await response.json();
 
-  const data=
-   await response.json();
+  document.getElementById("system").textContent=
+   data.system ||
+   data.release ||
+   data.machine ||
+   "Linux";
 
-  document.getElementById("system")
-   .textContent=
-   data.system || data.release || "-";
-
-  document.getElementById("python")
-   .textContent=
+  document.getElementById("python").textContent=
    data.python || "-";
 
-  document.getElementById("user")
-   .textContent=
+  document.getElementById("user").textContent=
    data.user || "-";
 
-  document.getElementById("online")
-   .textContent="● ONLINE";
+  document.getElementById("status").textContent=
+   "● ONLINE";
 
  }catch(e){
 
-  document.getElementById("online")
-   .textContent="● OFFLINE";
+  document.getElementById("status").textContent=
+   "● OFFLINE";
 
  }
 
 }
 
 systemInfo();
-
 setInterval(systemInfo,5000);
 
 input.focus();
