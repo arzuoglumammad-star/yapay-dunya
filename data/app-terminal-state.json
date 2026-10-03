@@ -1,0 +1,19 @@
+{
+  "system": "Yapay Dünya",
+  "terminal": {
+    "service": "App Terminal",
+    "version": "2.0.0",
+    "port": 8791,
+    "status": "online"
+  },
+  "linux": {
+    "user": "codespace",
+    "python": "Python 3.14.2",
+    "kernel": "6.8.0-1064-azure"
+  },
+  "project": {
+    "path": "/workspaces/yapay-dunya",
+    "branch": "main"
+  },
+  "timestamp": 1791016585.5749133
+}

@@ -1,67 +1,192 @@
-const output = document.getElementById("output");
-const input = document.getElementById("command");
-const statusEl = document.getElementById("status");
+const YDTerminal = (() => {
 
-function print(text, cls="line"){
-    const div=document.createElement("div");
-    div.className=cls;
-    div.textContent=text;
-    output.appendChild(div);
-    output.scrollTop=output.scrollHeight;
-}
+    const API = window.YD_TERMINAL_API || "";
 
-async function status(){
-    try{
-        const r=await fetch("/api/status");
-        const d=await r.json();
+    const output =
+        document.getElementById("output");
 
-        if(d.ok){
-            statusEl.textContent="● LINUX ONLINE";
-            statusEl.className="status";
-            print("YAPAY DÜNYA LINUX TERMINAL HAZIR","success");
-            print("Proje: "+d.project);
-            print("Kullanıcı: "+d.user);
+    const input =
+        document.getElementById("command");
+
+    const connection =
+        document.getElementById("connection");
+
+    function print(text, type = "output-line") {
+
+        const line =
+            document.createElement("div");
+
+        line.className = type;
+
+        line.textContent =
+            String(text ?? "");
+
+        output.appendChild(line);
+
+        output.scrollTop =
+            output.scrollHeight;
+    }
+
+    async function request(
+        endpoint,
+        options = {}
+    ) {
+
+        const response =
+            await fetch(
+                API + endpoint,
+                {
+                    cache: "no-store",
+                    ...options
+                }
+            );
+
+        return response.json();
+    }
+
+    async function health() {
+
+        try {
+
+            const data =
+                await request("/api/status");
+
+            if (!data.ok)
+                throw new Error("offline");
+
+            connection.textContent =
+                "● LINUX ONLINE";
+
+            connection.className =
+                "online";
+
+            print(
+                "YAPAY DÜNYA LINUX TERMINAL HAZIR",
+                "success"
+            );
+
+            print(
+                "Proje: " + data.project,
+                "muted"
+            );
+
+            print(
+                "Kullanıcı: " + data.user,
+                "muted"
+            );
+
             print("");
+
+        } catch (error) {
+
+            connection.textContent =
+                "● OFFLINE";
+
+            connection.style.color =
+                "#ff7373";
+
+            print(
+                "Linux backend bağlantısı kurulamadı.",
+                "error"
+            );
         }
-    }catch(e){
-        statusEl.textContent="● OFFLINE";
-        statusEl.style.color="#ff6666";
-        print("Terminal bağlantısı kurulamadı","error");
     }
-}
 
-async function run(command){
-    input.value="";
-    print("$ "+command,"prompt");
+    async function run(command) {
 
-    try{
-        const r=await fetch("/api/terminal",{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({command})
-        });
+        command =
+            String(command || "").trim();
 
-        const d=await r.json();
+        if (!command)
+            return;
 
-        if(d.stdout) print(d.stdout);
-        if(d.stderr) print(d.stderr,"error");
+        print(
+            "$ " + command,
+            "command"
+        );
 
-        if(d.code !== undefined && d.code !== 0){
-            print("[exit "+d.code+"]","error");
+        try {
+
+            const data =
+                await request(
+                    "/api/terminal",
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+                                command
+                            })
+                    }
+                );
+
+            if (data.stdout)
+                print(data.stdout);
+
+            if (data.stderr)
+                print(
+                    data.stderr,
+                    "error"
+                );
+
+            if (
+                data.code !== undefined &&
+                data.code !== 0
+            ) {
+                print(
+                    "[exit " +
+                    data.code +
+                    "]",
+                    "error"
+                );
+            }
+
+        } catch (error) {
+
+            print(
+                "Bağlantı hatası: " +
+                error.message,
+                "error"
+            );
         }
-    }catch(e){
-        print("Bağlantı hatası: "+e.message,"error");
     }
-}
 
-function execute(){
-    const cmd=input.value.trim();
-    if(cmd) run(cmd);
-}
+    function execute() {
 
-input.addEventListener("keydown",e=>{
-    if(e.key==="Enter") execute();
-});
+        const command =
+            input.value.trim();
 
-status();
-</script>
+        if (!command)
+            return;
+
+        input.value = "";
+
+        run(command);
+    }
+
+    input.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Enter"
+            ) {
+                execute();
+            }
+        }
+    );
+
+    health();
+
+    return {
+        run,
+        execute,
+        health
+    };
+
+})();
