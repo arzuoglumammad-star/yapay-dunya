@@ -1,0 +1,13 @@
+{
+  "name": "Yapay Dünya Remote Linux",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "forwardPorts": [8787],
+  "portsAttributes": {
+    "8787": {
+      "label": "Yapay Dünya Linux Center",
+      "protocol": "http",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "bash linux/system-check.sh"
+}

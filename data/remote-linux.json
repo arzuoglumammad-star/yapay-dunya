@@ -1,0 +1,15 @@
+{
+  "service": "Yapay Dünya Remote Linux",
+  "version": "3.0.0",
+  "provider": "GitHub Codespaces",
+  "project": "/workspaces/yapay-dunya",
+  "linux_center": {
+    "port": 8787,
+    "host": "0.0.0.0",
+    "api": "/api"
+  },
+  "world_engine": {
+    "connected": false,
+    "mode": "remote"
+  }
+}
