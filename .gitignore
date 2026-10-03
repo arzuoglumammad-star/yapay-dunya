@@ -8,3 +8,7 @@
 __pycache__/
 linux/server.log
 server.log
+runtime/terminal.token
+backups/
+runtime/
+*.token
