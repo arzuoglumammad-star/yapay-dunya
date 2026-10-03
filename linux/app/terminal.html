@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#05070a">
+<title>Yapay Dünya Linux</title>
+
+<style>
+*{box-sizing:border-box}
+
+html,body{
+ margin:0;
+ width:100%;
+ height:100%;
+ background:#05070a;
+ color:#e8edf5;
+ font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ overflow:hidden;
+}
+
+.app{
+ height:100%;
+ display:flex;
+ flex-direction:column;
+}
+
+.top{
+ height:58px;
+ flex-shrink:0;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 14px;
+ background:#0b0f15;
+ border-bottom:1px solid #202833;
+}
+
+.title{
+ display:flex;
+ align-items:center;
+ gap:9px;
+ font-weight:750;
+}
+
+.logo{
+ width:32px;
+ height:32px;
+ display:grid;
+ place-items:center;
+ border-radius:9px;
+ background:#111923;
+ font-size:18px;
+}
+
+.status{
+ font-size:11px;
+ color:#42e58a;
+}
+
+.main{
+ flex:1;
+ min-height:0;
+ display:flex;
+ flex-direction:column;
+}
+
+.info{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:7px;
+ padding:9px;
+}
+
+.info div{
+ background:#0d131b;
+ border:1px solid #1c2530;
+ border-radius:10px;
+ padding:8px;
+ min-width:0;
+}
+
+.label{
+ display:block;
+ color:#778393;
+ font-size:9px;
+}
+
+.value{
+ display:block;
+ margin-top:2px;
+ font-size:12px;
+ font-weight:700;
+ overflow:hidden;
+ text-overflow:ellipsis;
+ white-space:nowrap;
+}
+
+.terminal{
+ flex:1;
+ min-height:0;
+ margin:0 9px 9px;
+ border:1px solid #202a36;
+ border-radius:14px;
+ background:#020304;
+ display:flex;
+ flex-direction:column;
+ overflow:hidden;
+}
+
+.output{
+ flex:1;
+ overflow:auto;
+ padding:12px;
+ font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+ font-size:12px;
+ line-height:1.55;
+ white-space:pre-wrap;
+ word-break:break-word;
+ color:#c9d2de;
+}
+
+.prompt{
+ color:#49df87;
+}
+
+.command{
+ color:#fff;
+}
+
+.error{
+ color:#ff7070;
+}
+
+.input{
+ display:flex;
+ flex-shrink:0;
+ border-top:1px solid #202a36;
+ background:#080b0f;
+}
+
+.input span{
+ padding:12px 7px 12px 10px;
+ color:#45df86;
+ font-family:monospace;
+}
+
+input{
+ flex:1;
+ min-width:0;
+ border:0;
+ outline:0;
+ background:transparent;
+ color:#fff;
+ font:12px monospace;
+ padding:12px 5px;
+}
+
+.send{
+ width:55px;
+ border:0;
+ border-left:1px solid #202a36;
+ background:#111923;
+ color:#fff;
+ font-weight:700;
+}
+
+.quick{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:6px;
+ padding:8px;
+ background:#0a0e14;
+ border-top:1px solid #202a36;
+}
+
+.quick button{
+ border:1px solid #202a36;
+ background:#101721;
+ color:#cbd5e1;
+ border-radius:8px;
+ padding:8px 3px;
+ font-size:10px;
+}
+
+@media(max-width:380px){
+ .info{
+  grid-template-columns:repeat(2,1fr);
+ }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="top">
+ <div class="title">
+  <div class="logo">🐧</div>
+  <div>
+   Yapay Dünya Linux
+   <div style="font-size:9px;color:#687585">
+    Remote Linux Center
+   </div>
+  </div>
+ </div>
+
+ <div id="status" class="status">
+  BAĞLANIYOR
+ </div>
+</header>
+
+<main class="main">
+
+<section class="info">
+ <div>
+  <span class="label">HOST</span>
+  <span id="host" class="value">-</span>
+ </div>
+
+ <div>
+  <span class="label">PYTHON</span>
+  <span id="python" class="value">-</span>
+ </div>
+
+ <div>
+  <span class="label">USER</span>
+  <span id="user" class="value">-</span>
+ </div>
+
+ <div>
+  <span class="label">DISK</span>
+  <span id="disk" class="value">-</span>
+ </div>
+</section>
+
+<section class="terminal">
+
+ <div id="output" class="output">
+  <span class="prompt">YapayDunya@Linux:~$</span>
+  Linux bağlantısı kuruluyor...
+ </div>
+
+ <div class="input">
+  <span>$</span>
+  <input
+   id="command"
+   autocomplete="off"
+   autocapitalize="off"
+   spellcheck="false"
+   placeholder="Linux komutu yaz..."
+  >
+  <button class="send" onclick="runCommand()">ÇALIŞTIR</button>
+ </div>
+
+ <div class="quick">
+  <button onclick="quick('pwd')">PWD</button>
+  <button onclick="quick('ls -la')">DOSYALAR</button>
+  <button onclick="quick('python3 --version')">PYTHON</button>
+  <button onclick="quick('git status')">GIT</button>
+  <button onclick="quick('uname -a')">SYSTEM</button>
+ </div>
+
+</section>
+
+</main>
+
+</div>
+
+<script>
+
+const API =
+ location.port === "8787"
+ ? ""
+ : location.protocol + "//" + location.hostname + ":8787";
+
+const output =
+ document.getElementById("output");
+
+const input =
+ document.getElementById("command");
+
+function print(text, cls=""){
+ const div=document.createElement("div");
+ if(cls) div.className=cls;
+ div.textContent=text;
+ output.appendChild(div);
+ output.scrollTop=output.scrollHeight;
+}
+
+async function system(){
+
+ try{
+
+  const r=await fetch(API+"/api/system");
+  const s=await r.json();
+
+  document.getElementById("host").textContent =
+   s.hostname || "-";
+
+  document.getElementById("python").textContent =
+   s.python || "-";
+
+  document.getElementById("user").textContent =
+   s.user || "-";
+
+  const gb =
+   s.disk_free
+   ? (s.disk_free/1024/1024/1024).toFixed(1)+" GB"
+   : "-";
+
+  document.getElementById("disk").textContent=gb;
+
+  document.getElementById("status").textContent="ONLINE";
+
+ }catch(e){
+
+  document.getElementById("status").textContent="OFFLINE";
+
+ }
+
+}
+
+async function runCommand(){
+
+ const cmd=input.value.trim();
+
+ if(!cmd) return;
+
+ input.value="";
+
+ print("$ "+cmd,"command");
+
+ try{
+
+  const r=await fetch(API+"/api/terminal",{
+   method:"POST",
+   headers:{
+    "Content-Type":"application/json"
+   },
+   body:JSON.stringify({
+    command:cmd
+   })
+  });
+
+  const data=await r.json();
+
+  if(data.output)
+   print(data.output);
+
+  if(data.error)
+   print(data.error,"error");
+
+ }catch(e){
+
+  print("Linux bağlantısı kurulamadı: "+e.message,"error");
+
+ }
+
+}
+
+function quick(command){
+
+ input.value=command;
+ runCommand();
+
+}
+
+input.addEventListener("keydown",e=>{
+
+ if(e.key==="Enter")
+  runCommand();
+
+});
+
+system();
+
+setInterval(system,5000);
+
+</script>
+
+</body>
+</html>
