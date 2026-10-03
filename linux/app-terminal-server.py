@@ -125,7 +125,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json(result)
             return
 
-        if self.path == "/" or self.path == "/index.html":
+        if self.path in ["/", "/index.html", "/terminal"]:
             html = Path(__file__).with_name("app-terminal.html").read_bytes()
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
